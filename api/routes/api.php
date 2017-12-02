@@ -1,5 +1,6 @@
 <?php
 
+use App\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -15,33 +16,26 @@ use Illuminate\Http\Request;
 
 // Check if user is authenticated
 Route::group(['middleware' => 'auth:api'], function() {
-	// Article Routes
-	Route::get('articles', function() {
-			// Get all articles
+	// Task Routes
+	// Get all tasks
+	Route::get('tasks', 'TaskController@all');
+	// Get one task
+	// Route::get('tasks/{task}', function() {
+	// });
+	// Create task
+	Route::post('tasks', 'TaskController@create');
+	// Update task
+	Route::put('tasks/{task}', function() {
 	});
-	Route::get('articles/{id}', function() {
-			// Get article by id
-	});
-	Route::post('articles', function() {
-			//
-	});
-	Route::put('articles/{id}', function() {
-			// Update article by id
-	});
-	Route::delete('articles/{id}', function() {
-			// Delete article by id
+	// Delete task
+	Route::delete('tasks/{task}', function() {
 	});
 });
 
 // Auth Routes
-Route::post('register', function() {
-		// Register user
-});
+// Register user
+Route::post('register', 'Auth\RegisterController@register');
 
-Route::post('login', function() {
-		// Login user
-});
+Route::post('login', 'Auth\LoginController@login');
 
-Route::post('logout', function() {
-		// Logout user
-});
+Route::post('logout', 'Auth\LoginController@logout');
