@@ -17,11 +17,9 @@ class CategoriesTableSeeder extends Seeder
 
 		$faker = \Faker\Factory::create();
 
-		$userIds = DB::table('Categories')->pluck('id')->toArray();
-
 		// Create Tasks
 		for ($i=0; $i < 30; $i++) { 
-			Task::create([
+			Category::create([
 				'name' => $faker->word
 			]);
 		}
