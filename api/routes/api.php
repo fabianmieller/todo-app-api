@@ -32,9 +32,10 @@ use Illuminate\Http\Request;
 		Route::delete('tasks/{task}', function() {
 		});
 
-		// Get User information
-		Route::get('users', 'UserController@get');
 	});
+	
+	// Get User information
+	Route::get('users', 'UserController@get');
 	
 	// Auth Routes
 	// Register user
