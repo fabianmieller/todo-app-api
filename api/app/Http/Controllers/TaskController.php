@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -30,6 +31,17 @@ class TaskController extends Controller
 	}
 
 	public function update(Request $request, Task $task){
+		$task = Task::findOrFail($task->id);
+		$user = auth()->guard('api')->user();
+		if($user->id !== $task->user_id){
+			throw new AuthenticationException();
+		}
+		
+		$this->validate($request, [
+			'title' => 'required|max:191',
+			'checked' => 'required'
+		]);
+		
 		$task->update($request->all());
 
 		return response()->json($task, 200);
