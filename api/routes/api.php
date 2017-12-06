@@ -16,24 +16,19 @@ use Illuminate\Http\Request;
 
 // Check if user is authenticated
 Route::group(['middleware' => 'auth:api'], function() {
-	// Task Routes
 	// Get all tasks
 	Route::get('tasks', 'TaskController@all');
-	// Get one task
-	// Route::get('tasks/{task}', function() {
-	// });
 	// Create task
 	Route::post('tasks', 'TaskController@create');
 	// Update task
 	Route::put('tasks/{task}', 'TaskController@update');
 	// Delete task
-	Route::delete('tasks/{task}', function() {
-	});
-
+	Route::delete('tasks/{task}', 'TaskController@delete');
+	
+	// Get User information
+	Route::get('users', 'UserController@get');
 });
 
-// Get User information
-Route::get('users', 'UserController@get');
 
 // Auth Routes
 // Register user
